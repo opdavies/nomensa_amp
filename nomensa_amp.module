@@ -5,8 +5,6 @@
  * Embeds the Nomensa Accessibile Media Player within Drupal.
  */
 
-require 'includes/core.inc';
-
 /**
  * Implements hook_menu().
  */
@@ -38,9 +36,33 @@ function nomensa_amp_permission() {
  * Implements hook_init().
  */
 function nomensa_amp_init() {
-  if ($amp_settings = variable_get('nomensa_amp_settings') && $path = libraries_get_path('nomensa_amp')) {
-    foreach ($amp_settings['players'] as $player => $enabled) {
-      // If enabled, do something.
+  if ($settings = variable_get('nomensa_amp_settings')) {
+    if ($library_path = libraries_get_path('nomensa_amp')) {
+      // Add global CSS and javascript files.
+      if (isset($settings['advanced']['minimised']) && $settings['advanced']['minimised'] == 1) {
+        // Load the minimised files.
+        drupal_add_css($library_path . '/core/player-core.min.css');
+        drupal_add_css($library_path . '/custom/player-theme.min.css');
+        drupal_add_js($library_path . '/core/javascript/jquery.player.min.js');
+      }
+      else {
+        // Load the normal files.
+        drupal_add_css($library_path . '/core/player-core.css');
+        drupal_add_css($library_path . '/custom/player-theme.css');
+        drupal_add_js($library_path . '/core/javascript/jquery.player.js');
+      }
+      drupal_add_js($library_path . '/core/javascript/swfobject/swfobject.js');
+      drupal_add_js($library_path . '/custom/javascript/jquery.loader.js');
+      
+      foreach ($settings['players'] as $player => $enabled) {
+        // Add player-specific files.
+        if ($enabled) {
+          switch ($player) {
+            case 'youtube':
+              break;
+          }
+        }
+      }
     }
   }
 }
