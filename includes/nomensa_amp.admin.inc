@@ -7,6 +7,8 @@
 
 /**
  *
+ *
+ * @see nomensa_amp_menu()
  */
 function nomensa_amp_admin_settings_form() {
   $defaults = variable_get('nomensa_amp_settings');
@@ -14,9 +16,8 @@ function nomensa_amp_admin_settings_form() {
   $form['nomensa_amp_settings']['#tree'] = TRUE;
 
   $form['nomensa_amp_settings']['players'] = array(
-    '#title' => t('Players'),
+    '#title' => t('Enabled Players'),
     '#type' => 'fieldset',
-    '#collapsible' => TRUE,
   );
   
   $players = array(
@@ -25,6 +26,7 @@ function nomensa_amp_admin_settings_form() {
     'jwplayer' => 'jwPlayer',
   );
   
+  // Create a checkbox for each player.
   foreach ($players as $key => $name) {
     $form['nomensa_amp_settings']['players'][$key] = array(
       '#title' => $name,
