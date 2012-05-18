@@ -1,0 +1,26 @@
+<?php
+
+/**
+ * @file
+ *
+ */
+ 
+/**
+ * Implements hook_install().
+ */
+function nomensa_amp_install() {
+  variable_set('nomensa_amp_settings', array(
+    'players' => array(
+      'youtube' => 1,
+      'vimeo' => 0,
+      'jwplayer' => 0,
+    ),
+  ));
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function nomensa_amp_uninstall() {
+  variable_del('nomensa_amp_settings');
+}
