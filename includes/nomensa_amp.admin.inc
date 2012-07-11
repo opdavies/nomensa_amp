@@ -6,11 +6,11 @@
  */
 
 /**
- *
+ * Form constructor for the admin settings form.
  *
  * @see nomensa_amp_menu()
  */
-function nomensa_amp_admin_settings_form() {
+function nomensa_amp_admin_settings_form($form, $form_state) {
   $defaults = variable_get('nomensa_amp_settings');
 
   $form['nomensa_amp_settings']['#tree'] = TRUE;
@@ -31,7 +31,7 @@ function nomensa_amp_admin_settings_form() {
     $form['nomensa_amp_settings']['players'][$key] = array(
       '#title' => $name,
       '#type' => 'checkbox',
-      '#default_value' => $defaults['players'][$key],
+      '#default_value' => isset($defaults['players'][$key]) ? $defaults['players'][$key] : 0,
     );
   }
 
