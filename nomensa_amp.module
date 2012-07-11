@@ -33,3 +33,14 @@ function nomensa_amp_permission() {
     ),
   );
 }
+
+/**
+ * Implements hook_init().
+ */
+function nomensa_amp_init() {
+  if ($amp_settings = variable_get('nomensa_amp_settings') && $path = libraries_get_path('nomensa_amp')) {
+    foreach ($amp_settings['players'] as $player => $enabled) {
+      // If enabled, do something.
+    }
+  }
+}
