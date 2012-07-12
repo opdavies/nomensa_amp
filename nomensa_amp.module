@@ -34,17 +34,19 @@ function nomensa_amp_permission() {
 
 /**
  * Implements hook_init().
+ *
+ * Loads the files from the Nomensa AMP library.
  */
 function nomensa_amp_init() {
   if ($settings = variable_get('nomensa_amp_settings')) {
     if ($library_path = libraries_get_path('nomensa_amp')) {
       // Add the jQuery UI slider.
       drupal_add_library('system', 'ui.slider');
-      
+
       // Add global CSS and javascript files.
       drupal_add_js($library_path . '/core/javascript/swfobject/swfobject.js');
       drupal_add_js($library_path . '/custom/javascript/jquery.loader.js');
-      
+
       if (isset($settings['advanced']['minimised']) && $settings['advanced']['minimised'] == 1) {
         // Load the minimised files.
         drupal_add_js($library_path . '/core/javascript/jquery.player.min.js');
@@ -57,22 +59,46 @@ function nomensa_amp_init() {
         drupal_add_css($library_path . '/core/css/player-core.css');
         drupal_add_css($library_path . '/custom/css/player-theme.css');
       }
-      
+
       foreach ($settings['players'] as $player => $enabled) {
         // Add player-specific files.
         if ($enabled) {
           switch ($player) {
             case 'vimeo':
-			  drupal_add_js($library_path . '/custom/javascript/config/vimeo/vimeo.config.js');
+              drupal_add_js($library_path . '/custom/javascript/config/vimeo/vimeo.config.js');
               break;
 
             case 'jwplayer':
-			  drupal_add_js($library_path . '/custom/javascript/config/jwplayer-5/core/jwplayer.js');
-			  drupal_add_js($library_path . '/custom/javascript/config/jwplayer-5/jw-player.config.js');
+              drupal_add_js($library_path . '/custom/javascript/config/jwplayer-5/core/jwplayer.js');
+              drupal_add_js($library_path . '/custom/javascript/config/jwplayer-5/jw-player.config.js');
               break;
           }
         }
       }
     }
   }
+}
+
+/**
+ * Implements hook_requirements().
+ *
+ * Displays an error on the Status Report page is the library doesn't exist.
+ */
+function nomensa_amp_requirements($phase) {
+  $requirements = array();
+  $t = get_t();
+
+  if ($phase == 'runtime') {
+    $library_path = libraries_get_path('nomensa_amp');
+    if (!file_exists($library_path . '/license.txt')) {
+      $requirements['nomensa_amp'] = array(
+        'title' => $t('Nomensa Accessible Media Player'),
+        'value' => $t('Not Found'),
+        'severity' => REQUIREMENT_ERROR,
+        'description' => $t('The Nomensa AMP library cannot be found. <a href="https://github.com/nomensa/Accessible-Media-Player" title="Nomensa Accessible Media Player">Download it</a> and extract it into <em>sites/all/libraries/nomensa_amp</em>.'),
+      );
+    }
+  }
+
+  return $requirements;
 }
