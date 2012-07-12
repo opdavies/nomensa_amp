@@ -63,9 +63,12 @@ function nomensa_amp_init() {
         if ($enabled) {
           switch ($player) {
             case 'vimeo':
+			  drupal_add_js($library_path . '/custom/javascript/config/vimeo/vimeo.config.js');
               break;
 
             case 'jwplayer':
+			  drupal_add_js($library_path . '/custom/javascript/config/jwplayer-5/core/jwplayer.js');
+			  drupal_add_js($library_path . '/custom/javascript/config/jwplayer-5/jw-player.config.js');
               break;
           }
         }
