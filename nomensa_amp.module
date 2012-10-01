@@ -1,0 +1,70 @@
+<?php
+
+/**
+ * @file
+ * Integrates the Nomensa Accessible Media Player with Drupal.
+ */
+
+/**
+ * Implementation of hook_menu().
+ */
+function nomensa_amp_menu() {
+  $items['admin/settings/nomensa-amp'] = array(
+    'title' => 'Nomensa Accessible Media Player',
+    'description' => 'Administration settings for the Nomensa Accessible Media Player module',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('nomensa_amp_admin_settings_form'),
+    'access arguments' => array('administer nomensa amp'),
+    'file' => 'nomensa_amp.admin.inc',
+  );
+
+  return $items;
+}
+
+/**
+ * Implementation of hook_perm().
+ */
+function nomensa_amp_perm() {
+  return array('administer nomensa amp');
+}
+
+/**
+ * Implementation of hook_init().
+ */
+function nomensa_amp_init() {
+  $library_path = libraries_get_path('nomensa_amp');
+
+  // Add global CSS and javascript files.
+  drupal_add_js($library_path . '/core/javascript/swfobject/swfobject.js');
+  drupal_add_js($library_path . '/custom/javascript/jquery.loader.js');
+
+  jquery_ui_add('ui.slider');
+
+  $minified = variable_get('nomensa_amp_minified', 0);
+
+  if ($minified) {
+    // Load the minimised files.
+    drupal_add_js($library_path . '/core/javascript/jquery.player.min.js');
+    drupal_add_css($library_path . '/core/css/player-core.min.css');
+    drupal_add_css($library_path . '/custom/css/player-theme.min.css');
+  }
+  else {
+    // Load the normal files.
+    drupal_add_js($library_path . '/core/javascript/jquery.player.js');
+    drupal_add_css($library_path . '/core/css/player-core.css');
+    drupal_add_css($library_path . '/custom/css/player-theme.css');
+  }
+
+  $youtube = variable_get('nomensa_amp_minified', 0);
+  $vimeo = variable_get('nomensa_amp_minified', 0);
+  $jwplayer = variable_get('nomensa_amp_minified', 0);
+
+  if ($vimeo) {
+    drupal_add_js($library_path . '/custom/javascript/config/vimeo/vimeo.config.js');
+  }
+
+  if ($jwplayer) {
+    drupal_add_js($library_path . '/custom/javascript/config/jwplayer-5/core/jwplayer.js');
+    drupal_add_js($library_path . '/custom/javascript/config/jwplayer-5/jw-player.config.js');
+  }
+}

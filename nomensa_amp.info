@@ -1,1 +1,6 @@
-name = Nomensa AMP
+name = Nomensa Accessible Media Player
+description = Integrates the Nomensa Accessible Media Player with Drupal
+core = 6.x
+package = Media
+dependencies[] = libraries
+dependencies[] = jquery_ui

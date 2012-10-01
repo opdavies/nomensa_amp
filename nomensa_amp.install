@@ -1,0 +1,17 @@
+<?php
+
+/**
+ * Install, update and uninstall functions for the Nomensa Accessible Media
+ * Player module.
+ */
+
+/**
+ * Implementation of hook_uninstall().
+ */
+function nomensa_amp_uninstall() {
+  // Delete any variables.
+  variable_del('nomensa_amp_youtube');
+  variable_del('nomensa_amp_vimeo');
+  variable_del('nomensa_amp_jwplayer');
+  variable_del('nomensa_amp_minified');
+}
