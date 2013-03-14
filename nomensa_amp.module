@@ -32,42 +32,41 @@ function nomensa_amp_perm() {
  * Implementation of hook_init().
  */
 function nomensa_amp_init() {
-  if ($settings = variable_get('nomensa_amp_settings', NULL)) {
-    $library_path = libraries_get_path('nomensa_amp');
+  $settings = variable_get('nomensa_amp_settings', NULL);
+  $library_path = libraries_get_path('nomensa_amp');
 
-    // Add the jQuery UI slider.
-    jquery_ui_add('ui.slider');
+  // Add the jQuery UI slider.
+  jquery_ui_add('ui.slider');
 
-    // Add global CSS and javascript files.
-    drupal_add_js($library_path . '/core/javascript/swfobject/swfobject.js');
-    drupal_add_js($library_path . '/custom/javascript/jquery.loader.js');
+  // Add global CSS and javascript files.
+  drupal_add_js($library_path . '/core/javascript/swfobject/swfobject.js');
+  drupal_add_js($library_path . '/custom/javascript/jquery.loader.js');
 
-    if (isset($settings['advanced']['minimised']) && $settings['advanced']['minimised'] == 1) {
-      // Load the minimised files.
-      drupal_add_js($library_path . '/core/javascript/jquery.player.min.js');
-      drupal_add_css($library_path . '/core/css/player-core.min.css');
-      drupal_add_css($library_path . '/custom/css/player-theme.min.css');
-    }
-    else {
-      // Load the normal files.
-      drupal_add_js($library_path . '/core/javascript/jquery.player.js');
-      drupal_add_css($library_path . '/core/css/player-core.css');
-      drupal_add_css($library_path . '/custom/css/player-theme.css');
-    }
+  if (isset($settings['advanced']['minimised']) && $settings['advanced']['minimised'] == 1) {
+    // Load the minimised files.
+    drupal_add_js($library_path . '/core/javascript/jquery.player.min.js');
+    drupal_add_css($library_path . '/core/css/player-core.min.css');
+    drupal_add_css($library_path . '/custom/css/player-theme.min.css');
+  }
+  else {
+    // Load the normal files.
+    drupal_add_js($library_path . '/core/javascript/jquery.player.js');
+    drupal_add_css($library_path . '/core/css/player-core.css');
+    drupal_add_css($library_path . '/custom/css/player-theme.css');
+  }
 
-    foreach ($settings['players'] as $player => $enabled) {
-      // Add player-specific files.
-      if ($enabled) {
-        switch ($player) {
-          case 'vimeo':
-            drupal_add_js($library_path . '/custom/javascript/config/vimeo/vimeo.config.js');
-            break;
+  foreach ($settings['players'] as $player => $enabled) {
+    // Add player-specific files.
+    if ($enabled) {
+      switch ($player) {
+        case 'vimeo':
+          drupal_add_js($library_path . '/custom/javascript/config/vimeo/vimeo.config.js');
+          break;
 
-         case 'jwplayer':
-            drupal_add_js($library_path . '/custom/javascript/config/jwplayer-5/core/jwplayer.js');
-            drupal_add_js($library_path . '/custom/javascript/config/jwplayer-5/jw-player.config.js');
-            break;
-        }
+       case 'jwplayer':
+          drupal_add_js($library_path . '/custom/javascript/config/jwplayer-5/core/jwplayer.js');
+          drupal_add_js($library_path . '/custom/javascript/config/jwplayer-5/jw-player.config.js');
+          break;
       }
     }
   }

@@ -6,6 +6,22 @@
  */
 
 /**
+ * Implementation of hook_install().
+ */
+function nomensa_amp_install() {
+  $default_settings = array(
+    'players' => array(
+      'youtube' => 1,
+      'vimeo' => 0,
+      'jwplayer' => 0,
+    ),
+    'advanced' => array(
+      'minified' => 1,
+    ),
+  );
+}
+
+/**
  * Implementation of hook_uninstall().
  */
 function nomensa_amp_uninstall() {
