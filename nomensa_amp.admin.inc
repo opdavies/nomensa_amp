@@ -29,10 +29,20 @@ function nomensa_amp_admin_settings_form($form_state) {
   
   // Create a checkbox for each player.
   foreach ($players as $key => $name) {
+    if ($name == 'YouTube') {
+      $disabled = TRUE;
+      $default_value = 1;
+    }
+    else {
+      $disabled = FALSE;
+      $default_value = isset($defaults['players'][$key]) ? $defaults['players'][$key] : 0;
+    }
+
     $form['nomensa_amp_settings']['players'][$key] = array(
       '#title' => $name,
       '#type' => 'checkbox',
-      '#default_value' => isset($defaults['players'][$key]) ? $defaults['players'][$key] : 0,
+      '#disabled' => $disabled,
+      '#default_value' => $default_value,
     );
   }
   
