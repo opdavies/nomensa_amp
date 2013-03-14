@@ -55,18 +55,20 @@ function nomensa_amp_init() {
     drupal_add_css($library_path . '/custom/css/player-theme.css');
   }
 
-  foreach ($settings['players'] as $player => $enabled) {
-    // Add player-specific files.
-    if ($enabled) {
-      switch ($player) {
-        case 'vimeo':
-          drupal_add_js($library_path . '/custom/javascript/config/vimeo/vimeo.config.js');
-          break;
+  if (isset($settings['players'])) {
+    foreach ($settings['players'] as $player => $enabled) {
+      // Add player-specific files.
+      if ($enabled) {
+        switch ($player) {
+          case 'vimeo':
+            drupal_add_js($library_path . '/custom/javascript/config/vimeo/vimeo.config.js');
+            break;
 
-       case 'jwplayer':
-          drupal_add_js($library_path . '/custom/javascript/config/jwplayer-5/core/jwplayer.js');
-          drupal_add_js($library_path . '/custom/javascript/config/jwplayer-5/jw-player.config.js');
-          break;
+         case 'jwplayer':
+            drupal_add_js($library_path . '/custom/javascript/config/jwplayer-5/core/jwplayer.js');
+            drupal_add_js($library_path . '/custom/javascript/config/jwplayer-5/jw-player.config.js');
+            break;
+        }
       }
     }
   }
