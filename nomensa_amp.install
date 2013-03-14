@@ -10,8 +10,33 @@
  */
 function nomensa_amp_uninstall() {
   // Delete any variables.
+  variable_del('nomensa_amp_settings');
+}
+
+/*i*
+ * Updates variables.
+ */
+function nomensa_amp_update_6100() {
+  $ret = array();
+  $new_settings = array();
+
+  // Update the player settings.
+  $new_settings['players']['youtube'] = variable_get('nomensa_amp_youtube', 0);
+  $new_settings['players']['vimeo'] = variable_get('nomensa_amp_vimeo', 0);
+  $new_settings['players']['jwplayer'] = variable_get('nomensa_amp_jwplayer', 0);
+
+  // Update the advanced settings.
+  $new_settings['advanced']['minified'] = variable_get('nomensa_amp_minified', 0);
+
+  // Save the new settings.
+  variable_set('nomensa_amp_settings', $new_settings);
+
+  // Delete the old settings.
   variable_del('nomensa_amp_youtube');
   variable_del('nomensa_amp_vimeo');
   variable_del('nomensa_amp_jwplayer');
   variable_del('nomensa_amp_minified');
+
+  return $ret;
 }
+
