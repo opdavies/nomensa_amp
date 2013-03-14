@@ -5,11 +5,13 @@
  * Embeds the Nomensa Accessibile Media Player within Drupal.
  */
 
+define('NOMENSA_AMP_SETTINGS_FORM', 'admin/config/media/nomensa-amp');
+
 /**
  * Implements hook_menu().
  */
 function nomensa_amp_menu() {
-  $items['admin/config/media/nomensa-amp'] = array(
+  $items[NOMENSA_AMP_SETTINGS_FORM] = array(
     'title' => 'Nomensa Accessible Media Player',
     'description' => 'Administration functions for the Nomensa Accessible Media Player module',
     'page callback' => 'drupal_get_form',
