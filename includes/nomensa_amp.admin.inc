@@ -48,6 +48,11 @@ function nomensa_amp_admin_settings_form($form, $form_state) {
     '#type' => 'checkbox',
     '#default_value' => isset($defaults['advanced']['minimised']) ? $defaults['advanced']['minimised'] : 1,
   );
+  $form['nomensa_amp_settings']['advanced']['classname'] = array(
+    '#title' => t('Only convert link with following class name into player'),
+    '#type' => 'textfield',
+    '#default_value' => isset($defaults['advanced']['classname']) ? $defaults['advanced']['classname'] : 'player',
+  );
 
   $form = system_settings_form($form);
 
