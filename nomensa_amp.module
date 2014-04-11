@@ -79,8 +79,9 @@ function nomensa_amp_init() {
       }
 
       //pass classname to js
+      $class_name = isset($settings['advanced']['classname']) ? $settings['advanced']['classname'] : 'player';
       $my_settings = array(
-        'classname' => $settings['advanced']['classname'],
+        'classname' => $class_name,
       );
       drupal_add_js(array('nomensa_amp' => $my_settings), 'setting');
     }
