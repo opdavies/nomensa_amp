@@ -27,11 +27,11 @@ Drupal.behaviors.NomensaBehavior = {
  * Customizse this function in Drupal way to pass class name. 
  */
     var $ = jQuery;
-    var $classname = Drupal.settings.nomensa_amp.classname; 
-    var $yt_links = $('a[href*="http://www.youtube.com/watch"][class*="' + $classname + '"]');
-    var $vimeo_links = $('a[href*="http://vimeo.com/"][class*="' + $classname + '"]');
-    var $media_links = $('a[href$="flv"][class*="' + $classname + '"]', 'a[href$="mp4"][class*="' + $classname + '"]', 'a[href$="ogv"][class*="' + $classname + '"]');
-    var $audio_links = $('a[href$="mp3"][class*="' + $classname + '"]');
+    var $classname = Drupal.settings.nomensa_amp.classname;
+    var $yt_links = $('a[href*="http://www.youtube.com/watch"][class="' + $classname + '"]');
+    var $vimeo_links = $('a[href*="http://vimeo.com/"][class="' + $classname + '"]');
+    var $media_links = [$('a[href$="flv"][class="' + $classname + '"]'), $('a[href$="mp4"][class="' + $classname + '"]'), $('a[href$="ogv"][class="' + $classname + '"]')];
+    var $audio_links = $('a[href$="mp3"][class="' + $classname + '"]');
     
     // Create players for our youtube links
     $.each($yt_links, function(i) {
