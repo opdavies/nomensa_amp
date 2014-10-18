@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Embeds the Nomensa Accessibile Media Player within Drupal.
+ * Embeds the Nomensa Accessible Media Player within Drupal.
  */
 
 define('NOMENSA_AMP_SETTINGS_FORM', 'admin/config/media/nomensa-amp');

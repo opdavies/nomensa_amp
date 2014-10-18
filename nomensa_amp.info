@@ -1,5 +1,5 @@
 name = Nomensa Accessible Media Player
-description = Embeds the Nomensa Accessibile Media Player within Drupal.
+description = Embeds the Nomensa Accessible Media Player within Drupal.
 core = 7.x
 package = Media
 configure = admin/config/media/nomensa-amp
