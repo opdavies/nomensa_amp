@@ -52,6 +52,7 @@ function nomensa_amp_admin_settings_form($form, $form_state) {
     '#title' => t('Only convert link with following class name into player'),
     '#type' => 'textfield',
     '#default_value' => isset($defaults['advanced']['classname']) ? $defaults['advanced']['classname'] : 'player',
+    '#description' => t('If no class is added, the player will be loaded for all relevant links.'),
   );
 
   $form = system_settings_form($form);
