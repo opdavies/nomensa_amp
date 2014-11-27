@@ -17,16 +17,16 @@ function nomensa_amp_admin_settings_form($form, $form_state) {
     '#title' => t('Enabled Players'),
     '#type' => 'fieldset',
   );
-  
+
   $players = array(
     'youtube' => 'YouTube',
     'vimeo' => 'Vimeo',
     'jwplayer' => 'jwPlayer',
   );
-  
+
   // Load the default settings.
   $defaults = variable_get('nomensa_amp_settings');
-  
+
   // Create a checkbox for each player.
   foreach ($players as $key => $name) {
     $form['nomensa_amp_settings']['players'][$key] = array(
@@ -35,7 +35,7 @@ function nomensa_amp_admin_settings_form($form, $form_state) {
       '#default_value' => isset($defaults['players'][$key]) ? $defaults['players'][$key] : 0,
     );
   }
-  
+
   // Advanced settings.
   $form['nomensa_amp_settings']['advanced'] = array(
     '#title' => t('Advanced settings'),
