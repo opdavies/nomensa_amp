@@ -92,8 +92,6 @@ function nomensa_amp_init() {
  * Implement hook_js_alter()
  */
 function nomensa_amp_js_alter(&$javascript) {
-  if ($library_path = libraries_get_path('nomensa_amp')) {
-    $file = drupal_get_path('module', 'nomensa_amp') . '/nomensa_amp.jquery.loader.js';
-    $javascript['sites/all/libraries/nomensa_amp/custom/javascript/jquery.loader.js'] = drupal_js_defaults($file);
-  }
+  $file = drupal_get_path('module', 'nomensa_amp') . '/nomensa_amp.jquery.loader.js';
+  $javascript['sites/all/libraries/nomensa_amp/custom/javascript/jquery.loader.js'] = drupal_js_defaults($file);
 }
