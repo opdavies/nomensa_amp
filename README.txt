@@ -38,12 +38,6 @@ How to use the video player:
      link (Drupal 7 only, as of release 7.x-1.2 - see
      https://www.drupal.org/node/2035311).
  * The video player will automatically be loaded in place of the link.
- * For an example, go to http://nomensa-amp.oliverdavies.co.uk.
-
-DEMO
-----
-
-http://nomensa-amp.oliverdavies.co.uk
 
 MAINTAINERS
 -----------
