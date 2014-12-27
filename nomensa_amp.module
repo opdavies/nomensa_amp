@@ -129,5 +129,4 @@ function nomensa_amp_requirements($phase) {
   }
 
   return $requirements;
->>>>>>> parent of d1c1364... Issue #2035311 by rli: Option to display media player instead of link.
 }
