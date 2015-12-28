@@ -1,0 +1,5 @@
+name: Nomensa Accessible Media Player
+description: Integrates the Nomensa Accessible Media Player with Drupal.
+type: module
+core: 8.x
+package: Media
